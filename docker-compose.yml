@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: autosnab-postgres
+    environment:
+      POSTGRES_DB: autosnab_db
+      POSTGRES_USER: autosnab_user
+      POSTGRES_PASSWORD: autosnab_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - autosnab_postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U autosnab_user -d autosnab_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: .
+    container_name: autosnab-backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: autosnab_db
+      DB_USER: autosnab_user
+      DB_PASSWORD: autosnab_password
+
+volumes:
+  autosnab_postgres_data:
