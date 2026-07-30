@@ -5,10 +5,7 @@ from sqlalchemy import text
 from app.db.database import engine
 
 
-router = APIRouter(
-    prefix="/ping",
-    tags=["Ping"]
-)
+router = APIRouter(prefix="/ping", tags=["Ping"])
 
 
 @router.get("")
@@ -18,6 +15,4 @@ async def ping():
 
         value = result.scalar()
 
-    return {
-        "database": value
-    }
+    return {"database": value}

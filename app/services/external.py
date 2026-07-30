@@ -8,7 +8,6 @@ async def send_external_request(
     longitude: float,
 ) -> bool:
 
-
     await asyncio.sleep(5)
 
     result = random.choice([True, False])

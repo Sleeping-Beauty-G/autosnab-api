@@ -298,7 +298,7 @@ alembic revision --autogenerate -m "migration_name"
 Запуск тестов:
 
 ```bash
-pytest
+python -m pytest -v
 ```
 
 Проверяются:

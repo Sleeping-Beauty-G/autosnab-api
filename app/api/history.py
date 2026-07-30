@@ -9,10 +9,7 @@ from app.db.database import get_session
 from app.db.models import RequestHistory
 
 
-router = APIRouter(
-    prefix="/history",
-    tags=["History"]
-)
+router = APIRouter(prefix="/history", tags=["History"])
 
 
 @router.get("")
@@ -23,9 +20,7 @@ async def get_history(
     query = select(RequestHistory)
 
     if cadastral_number:
-        query = query.where(
-            RequestHistory.cadastral_number == cadastral_number
-        )
+        query = query.where(RequestHistory.cadastral_number == cadastral_number)
 
     result = await session.execute(query)
 

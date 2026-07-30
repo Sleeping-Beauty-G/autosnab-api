@@ -26,6 +26,8 @@ target_metadata = Base.metadata
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
+
+
 def run_migrations_offline() -> None:
     url = DATABASE_URL
 
@@ -40,14 +42,10 @@ def run_migrations_offline() -> None:
         context.run_migrations()
 
 
-
 def run_migrations_online() -> None:
     from sqlalchemy import create_engine
 
-    sync_database_url = DATABASE_URL.replace(
-        "postgresql+asyncpg",
-        "postgresql"
-    )
+    sync_database_url = DATABASE_URL.replace("postgresql+asyncpg", "postgresql")
 
     connectable = create_engine(
         sync_database_url,
@@ -55,14 +53,10 @@ def run_migrations_online() -> None:
     )
     with connectable.connect() as connection:
 
-        context.configure(
-            connection=connection,
-            target_metadata=target_metadata
-        )
+        context.configure(connection=connection, target_metadata=target_metadata)
 
         with context.begin_transaction():
             context.run_migrations()
-
 
 
 if context.is_offline_mode():

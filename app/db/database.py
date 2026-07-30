@@ -1,7 +1,7 @@
 from sqlalchemy.ext.asyncio import (
-     create_async_engine,
-     async_sessionmaker,
-     AsyncSession,
+    create_async_engine,
+    async_sessionmaker,
+    AsyncSession,
 )
 
 from sqlalchemy.orm import DeclarativeBase
@@ -25,7 +25,6 @@ engine = create_async_engine(
     echo=True,
     pool_pre_ping=True,
 )
-
 
 
 async_session = async_sessionmaker(

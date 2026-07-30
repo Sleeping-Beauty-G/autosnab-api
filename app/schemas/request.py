@@ -2,19 +2,8 @@ from pydantic import BaseModel, Field
 
 
 class QueryRequest(BaseModel):
-    cadastral_number: str = Field(
-        ...,
-        min_length=1
-    )
+    cadastral_number: str = Field(..., min_length=1)
 
-    latitude: float = Field(
-        ...,
-        ge=-90,
-        le=90
-    )
+    latitude: float = Field(..., ge=-90, le=90)
 
-    longitude: float = Field(
-        ...,
-        ge=-180,
-        le=180
-    )
+    longitude: float = Field(..., ge=-180, le=180)

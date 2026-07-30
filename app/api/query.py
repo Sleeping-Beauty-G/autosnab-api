@@ -11,10 +11,7 @@ from app.schemas.response import QueryResponse
 from app.services.external import send_external_request
 
 
-router = APIRouter(
-    prefix="/query",
-    tags=["Query"]
-)
+router = APIRouter(prefix="/query", tags=["Query"])
 
 
 @router.post("", response_model=QueryResponse)
